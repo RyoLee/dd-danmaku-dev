@@ -28,7 +28,7 @@ module.exports = defineConfig({
       entries: [
         {
           find: '@',
-          replacement: path.resolve(projectRootDir, 'src')
+          replacement: path.resolve(projectRootDir, '../src')
         }
       ]
     }),

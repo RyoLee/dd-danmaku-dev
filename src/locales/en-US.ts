@@ -1,7 +1,7 @@
 const translate = {
     displayBtnTitle: '弹幕开关',
-    log:{
+    log: {
         loading: '',
-    }
+    },
 };
 export default translate;

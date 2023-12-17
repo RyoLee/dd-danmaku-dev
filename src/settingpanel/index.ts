@@ -1,6 +1,6 @@
 /* 创建设置面板 */
 
-import {DanDanDanmaku} from "../ddanmaku";
+import { DanDanDanmaku } from '@/ddd';
 import QuickSettings, { QuickSettingsPanel } from 'quicksettings';
 
 /**

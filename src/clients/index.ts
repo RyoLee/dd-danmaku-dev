@@ -1,26 +1,16 @@
-import * as emby from './emby';
-import * as jellyfin from './jellyfin';
-import { DanDanDanmaku } from '../ddanmaku';
+import { BaseClient } from './client';
+import { EmbyClient } from './emby';
+import { JellyfinClient } from './jellyfin';
+import { DanDanDanmaku } from '@/ddd';
 
-const client = (document: Document, ddd: DanDanDanmaku) => {
-    const appName = (document.querySelector('meta[name="application-name"]') as HTMLMetaElement)?.content ?? '';
-    /* 根据appName判断运行环境并返回对应客户端 */
-    switch (appName) {
-        case 'Emby':
-            return new emby.EmbyClient(ddd);
-        case 'Jellyfin':
-            return new jellyfin.JellyfinClient(ddd);
-        default:
-            return new Client(ddd);
+const client = (ddd: DanDanDanmaku) => {
+    const clients = [EmbyClient, JellyfinClient];
+    for (let c of clients) {
+        if (c.isEnv()) {
+            return new c(ddd);
+        }
     }
+    return new BaseClient(ddd);
 };
-export class Client {
-    ddd: DanDanDanmaku;
-    constructor(ddd: DanDanDanmaku) {
-        this.ddd = ddd;
-    }
-    init() {
-        throw this.ddd.locales.exception.notSupportedClient;
-    }
-}
+
 export default client;

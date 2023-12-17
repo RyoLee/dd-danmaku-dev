@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Fake Emby Page</title>
+        <script src="../../dist/ddd.user.js"></script>
+        <meta charset="utf-8" />
+        <meta name="application-name" content="Emby" />
+    </head>
+    <body>
+        <h1>Fake Emby Page</h1>
+        <p>Nothing to see here.</p>
+        <div></div>
+    </body>
+    <script type="text/javascript">
+        window.require = (names) => {
+            const modules = {
+                pluginManager: [
+                    {
+                        pluginsList: [
+                            {
+                                id: 'htmlvideoplayer',
+                                _currentPlayOptions: {
+                                    item: {
+                                        SeasonId: 100,
+                                        IndexNumber: 1,
+                                        ParentIndexNumber: 1,
+                                        Id: 100,
+                                        Name: '命运石之门',
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
+            };
+            return names.map((name) => modules[name]);
+        };
+    </script>
+</html>

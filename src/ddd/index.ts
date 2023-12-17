@@ -1,6 +1,7 @@
 import Danmaku from 'danmaku';
-import getClient, { Client } from '../clients';
-import translate from '../locales';
+import client from '@/clients';
+import translate from '@/locales';
+import { PluginStatus } from '@/enum';
 /* 配置名称 */
 const configName = 'ddconfig';
 /* 跨域前缀 */
@@ -32,7 +33,7 @@ export class DanDanDanmaku {
     constructor(win: Window, doc: Document) {
         this.win = win;
         this.doc = doc;
-        this.status = PluginStatus.INITIALIZING;
+        this.status = PluginStatus.DEF;
         /* 默认配置 */
         this.configs = {
             fontAutoSize: true,
@@ -65,7 +66,7 @@ export class DanDanDanmaku {
                         }
                     }
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             }
             win.localStorage.setItem(configName, JSON.stringify(this.configs));
@@ -74,7 +75,7 @@ export class DanDanDanmaku {
         this.locales = translate(win);
         this.danmaku = null;
         this.ob = null;
-        this.client = getClient(doc, this);
+        this.client = client(this);
         /* 当前播放信息 */
         this.mediaInfo = {
             /* 是否为系列如番剧电视剧 */
@@ -96,7 +97,7 @@ export class DanDanDanmaku {
     async downloadDanmakus() {
         let { chConvert } = this.configs;
         var url = new URL(baseUrl + uriComment + `${this.mediaInfo.episodeId}`);
-        url.search = new URLSearchParams({ withRelated: "true", chConvert: chConvert }).toString();
+        url.search = new URLSearchParams({ withRelated: 'true', chConvert: chConvert }).toString();
 
         try {
             const response = await fetch(url, {
@@ -196,9 +197,9 @@ export class DanDanDanmaku {
         return arr_comments;
     }
 
-    danmakuParser(comments: { p: string; m: string; }[], opacity: number, fontSize: number) {
+    danmakuParser(comments: { p: string; m: string }[], opacity: number, fontSize: number) {
         return comments
-            .map((comment: { p: string; m: string; }) => {
+            .map((comment: { p: string; m: string }) => {
                 const p = comment.p;
                 /**
                  * p参数格式为出现时间,模式,颜色,用户ID，各个参数之间使用英文逗号分隔

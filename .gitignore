@@ -12,7 +12,7 @@ node_modules
 /dist
 /.nyc_output
 package-lock.json
-
+yarn.lock
 
 node_modules
 .DS_Store
