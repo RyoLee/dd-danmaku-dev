@@ -1,0 +1,10 @@
+{
+    "namespace": "https://github.com/9channel",
+    "copyright": "2022, 9-ch (https://github.com/9channel)",
+    "license": "MIT; https://raw.githubusercontent.com/9channel/dd-danmaku/master/LICENSE",
+    "icon": "https://github.githubassets.com/pinned-octocat.svg",
+    "updateURL": "https://cdn.jsdelivr.net/gh/9channel/dd-danmaku@gh-pages/ddd.user.js",
+    "downloadURL": "https://cdn.jsdelivr.net/gh/9channel/dd-danmaku@gh-pages/ddd.user.js",
+    "grant": "none",
+    "match": "*/web/index.html"
+  }
