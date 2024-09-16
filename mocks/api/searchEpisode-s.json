@@ -1,0 +1,172 @@
+{
+    "hasMore": false,
+    "animes": [
+        {
+            "animeId": 6747,
+            "animeTitle": "笨蛋测验召唤兽",
+            "type": "tvseries",
+            "typeDescription": "TV动画",
+            "episodes": [
+                {
+                    "episodeId": 67470001,
+                    "episodeTitle": "第1话 笨蛋，班级，召唤战争"
+                },
+                {
+                    "episodeId": 67470002,
+                    "episodeTitle": "第2话 百合，玫瑰，健康教育"
+                },
+                {
+                    "episodeId": 67470003,
+                    "episodeTitle": "第3话 伙食费，约会，电击枪"
+                },
+                {
+                    "episodeId": 67470004,
+                    "episodeTitle": "第4话 爱，香辛料，便当"
+                },
+                {
+                    "episodeId": 67470005,
+                    "episodeTitle": "第5话 地图，宝藏，Striker ∑ V"
+                },
+                {
+                    "episodeId": 67470006,
+                    "episodeTitle": "第6话 我，泳池，泳装乐园"
+                },
+                {
+                    "episodeId": 67470007,
+                    "episodeTitle": "第7话 我，翔子，如月豪华乐园"
+                },
+                {
+                    "episodeId": 67470008,
+                    "episodeTitle": "第8话 暴走，迷宫，召唤兽补完计划"
+                },
+                {
+                    "episodeId": 67470009,
+                    "episodeTitle": "第9话 Kiss，胸部，马尾"
+                },
+                {
+                    "episodeId": 67470010,
+                    "episodeTitle": "第10话 模拟考试，怪盗，情书"
+                },
+                {
+                    "episodeId": 67470011,
+                    "episodeTitle": "第11话 劲敌，情书，闪电战"
+                },
+                {
+                    "episodeId": 67470012,
+                    "episodeTitle": "第12话 爱，勇气，我们的战斗就从现在开始(伪)"
+                },
+                {
+                    "episodeId": 67470013,
+                    "episodeTitle": "第13话 笨蛋、测验、召唤兽"
+                },
+                {
+                    "episodeId": 67479001,
+                    "episodeTitle": "S1 問題 クリスマスについて答えなさい"
+                },
+                {
+                    "episodeId": 67479002,
+                    "episodeTitle": "S2 Mission: Impossible: Baka~予告編"
+                },
+                {
+                    "episodeId": 67479003,
+                    "episodeTitle": "S3 Mission:Impossible:Baka"
+                },
+                {
+                    "episodeId": 67479004,
+                    "episodeTitle": "S4 バカ限定女装コンテスト"
+                },
+                {
+                    "episodeId": 67479005,
+                    "episodeTitle": "S5 姫路x吉井~女子ごはん"
+                },
+                {
+                    "episodeId": 67479006,
+                    "episodeTitle": "S6 王様ゲームin文月学園"
+                },
+                {
+                    "episodeId": 67479007,
+                    "episodeTitle": "S7 バカテス童話"
+                },
+                {
+                    "episodeId": 67479101,
+                    "episodeTitle": "C1 Opening 1a"
+                },
+                {
+                    "episodeId": 67479102,
+                    "episodeTitle": "C2 Opening 1b"
+                },
+                {
+                    "episodeId": 67479103,
+                    "episodeTitle": "C3 Ending 1a"
+                },
+                {
+                    "episodeId": 67479104,
+                    "episodeTitle": "C4 Ending 1b"
+                },
+                {
+                    "episodeId": 67479105,
+                    "episodeTitle": "C5 Ending 2"
+                },
+                {
+                    "episodeId": 67479106,
+                    "episodeTitle": "C6 Special Ending"
+                }
+            ]
+        },
+        {
+            "animeId": 8085,
+            "animeTitle": "笨蛋测试召唤兽 祭",
+            "type": "ova",
+            "typeDescription": "OVA",
+            "episodes": [
+                {
+                    "episodeId": 80850001,
+                    "episodeTitle": "第1话 我，女仆，新的旅程"
+                },
+                {
+                    "episodeId": 80850002,
+                    "episodeTitle": "第2话 笨蛋，烟花，召唤大会"
+                },
+                {
+                    "episodeId": 80859001,
+                    "episodeTitle": "S1 選択肢以降のみ: やっぱりアキちゃん."
+                },
+                {
+                    "episodeId": 80859002,
+                    "episodeTitle": "S2 選択肢以降のみ: 美波に決まってるだろ. 常考."
+                },
+                {
+                    "episodeId": 80859003,
+                    "episodeTitle": "S3 選択肢以降のみ: いやいや, 瑞希でしょ."
+                },
+                {
+                    "episodeId": 80859004,
+                    "episodeTitle": "S4 選択肢以降のみ: もちろん秀吉だよね."
+                },
+                {
+                    "episodeId": 80859005,
+                    "episodeTitle": "S5 選択肢以降のみ: あなたは2次元派?"
+                },
+                {
+                    "episodeId": 80859006,
+                    "episodeTitle": "S6 選択肢以降のみ: あなたは3次元派?"
+                },
+                {
+                    "episodeId": 80859101,
+                    "episodeTitle": "C1 Opening"
+                },
+                {
+                    "episodeId": 80859102,
+                    "episodeTitle": "C2 Ending"
+                },
+                {
+                    "episodeId": 80859103,
+                    "episodeTitle": "C3 Opening 2"
+                }
+            ]
+        }
+    ],
+    "errorCode": 0,
+    "success": true,
+    "errorMessage": ""
+}

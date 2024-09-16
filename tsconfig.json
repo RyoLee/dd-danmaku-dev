@@ -4,12 +4,13 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "target": "ESNext",
+    "target": "esnext",
     "strict": true,
     "esModuleInterop": true,
-    "module": "ESNext",
+    "resolveJsonModule": true,
+    "module": "esnext",
     "moduleResolution": "node",
-    "types": ["node","jest"],
+    "types": ["node", "jest"],
     "outDir": "dist",
     "lib": ["dom", "esnext"]
   },
