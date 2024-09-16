@@ -3,7 +3,7 @@
 // @description  Emby弹幕插件
 // @namespace    https://github.com/RyoLee
 // @author       RyoLee
-// @version      1.11
+// @version      1.10
 // @copyright    2022, RyoLee (https://github.com/RyoLee)
 // @license      MIT; https://raw.githubusercontent.com/RyoLee/emby-danmaku/master/LICENSE
 // @icon         https://github.githubassets.com/pinned-octocat.svg
@@ -37,16 +37,16 @@
             id: 'displayDanmaku',
             innerText: null,
             onclick: () => {
-                if (window.ede.loading) {
+                if (window.ddd.loading) {
                     console.log('正在加载,请稍后再试');
                     return;
                 }
                 console.log('切换弹幕开关');
-                window.ede.danmakuSwitch = (window.ede.danmakuSwitch + 1) % 2;
-                window.localStorage.setItem('danmakuSwitch', window.ede.danmakuSwitch);
-                document.querySelector('#displayDanmaku').children[0].innerText = danmaku_icons[window.ede.danmakuSwitch];
-                if (window.ede.danmaku) {
-                    window.ede.danmakuSwitch == 1 ? window.ede.danmaku.show() : window.ede.danmaku.hide();
+                window.ddd.danmakuSwitch = (window.ddd.danmakuSwitch + 1) % 2;
+                window.localStorage.setItem('danmakuSwitch', window.ddd.danmakuSwitch);
+                document.querySelector('#displayDanmaku').children[0].innerText = danmaku_icons[window.ddd.danmakuSwitch];
+                if (window.ddd.danmaku) {
+                    window.ddd.danmakuSwitch == 1 ? window.ddd.danmaku.show() : window.ddd.danmaku.hide();
                 }
             },
         };
@@ -55,7 +55,7 @@
             id: 'searchDanmaku',
             innerText: search_icon,
             onclick: () => {
-                if (window.ede.loading) {
+                if (window.ddd.loading) {
                     console.log('正在加载,请稍后再试');
                     return;
                 }
@@ -68,14 +68,14 @@
             id: 'translateDanmaku',
             innerText: translate_icon,
             onclick: () => {
-                if (window.ede.loading) {
+                if (window.ddd.loading) {
                     console.log('正在加载,请稍后再试');
                     return;
                 }
                 console.log('切换简繁转换');
-                window.ede.chConvert = (window.ede.chConvert + 1) % 3;
-                window.localStorage.setItem('chConvert', window.ede.chConvert);
-                document.querySelector('#translateDanmaku').setAttribute('title', chConverTtitle[window.ede.chConvert]);
+                window.ddd.chConvert = (window.ddd.chConvert + 1) % 3;
+                window.localStorage.setItem('chConvert', window.ddd.chConvert);
+                document.querySelector('#translateDanmaku').setAttribute('title', chConverTtitle[window.ddd.chConvert]);
                 reloadDanmaku('reload');
                 console.log(document.querySelector('#translateDanmaku').getAttribute('title'));
             },
@@ -85,14 +85,14 @@
             id: 'printDanmakuInfo',
             innerText: info_icon,
             onclick: () => {
-                if (!window.ede.episode_info || window.ede.loading) {
+                if (!window.ddd.episode_info || window.ddd.loading) {
                     console.log('正在加载,请稍后再试');
                     return;
                 }
                 console.log('显示当前信息');
-                let msg = '动画名称:' + window.ede.episode_info.animeTitle;
-                if (window.ede.episode_info.episodeTitle) {
-                    msg += '\n分集名称:' + window.ede.episode_info.episodeTitle;
+                let msg = '动画名称:' + window.ddd.episode_info.animeTitle;
+                if (window.ddd.episode_info.episodeTitle) {
+                    msg += '\n分集名称:' + window.ddd.episode_info.episodeTitle;
                 }
                 sendNotification('当前弹幕匹配', msg);
             },
@@ -151,8 +151,8 @@
             let container = document.querySelector(mediaQueryStr);
             // 页面未加载
             if (!container) {
-                if (window.ede.episode_info) {
-                    window.ede.episode_info = null;
+                if (window.ddd.episode_info) {
+                    window.ddd.episode_info = null;
                 }
                 return;
             }
@@ -207,17 +207,17 @@
             let parent = uiAnchor[0].parentNode.parentNode.parentNode;
             let menubar = document.createElement('div');
             menubar.id = 'danmakuCtr';
-            if (!window.ede.episode_info) {
+            if (!window.ddd.episode_info) {
                 menubar.style.opacity = 0.5;
             }
             parent.append(menubar);
             // 弹幕开关
-            displayButtonOpts.innerText = danmaku_icons[window.ede.danmakuSwitch];
+            displayButtonOpts.innerText = danmaku_icons[window.ddd.danmakuSwitch];
             menubar.appendChild(createButton(displayButtonOpts));
             // 手动匹配
             menubar.appendChild(createButton(searchButtonOpts));
             // 简繁转换
-            translateButtonOpts.title = chConverTtitle[window.ede.chConvert];
+            translateButtonOpts.title = chConverTtitle[window.ddd.chConvert];
             menubar.appendChild(createButton(translateButtonOpts));
             // 屏蔽等级
             filterButtonOpts.innerText = filter_icons[parseInt(window.localStorage.getItem('danmakuFilterLevel') ? window.localStorage.getItem('danmakuFilterLevel') : 0)];
@@ -355,7 +355,7 @@
         }
 
         function getComments(episodeId) {
-            let url = 'https://api.9-ch.com/cors/https://api.dandanplay.net/api/v2/comment/' + episodeId + '?withRelated=true&chConvert=' + window.ede.chConvert;
+            let url = 'https://api.xn--7ovq92diups1e.com/cors/https://api.dandanplay.net/api/v2/comment/' + episodeId + '?withRelated=true&chConvert=' + window.ddd.chConvert;
             return fetch(url, {
                 method: 'GET',
                 headers: {
@@ -379,10 +379,10 @@
             if (!comments) {
                 return;
             }
-            if (window.ede.danmaku != null) {
-                window.ede.danmaku.clear();
-                window.ede.danmaku.destroy();
-                window.ede.danmaku = null;
+            if (window.ddd.danmaku != null) {
+                window.ddd.danmaku.clear();
+                window.ddd.danmaku.destroy();
+                window.ddd.danmaku = null;
             }
             let _comments = danmakuFilter(danmakuParser(comments));
             console.log('弹幕加载成功: ' + _comments.length);
@@ -393,31 +393,31 @@
 
             let _container = document.querySelector(mediaContainerQueryStr);
             let _media = document.querySelector(mediaQueryStr);
-            window.ede.danmaku = new Danmaku({
+            window.ddd.danmaku = new Danmaku({
                 container: _container,
                 media: _media,
                 comments: _comments,
                 engine: 'canvas',
             });
-            window.ede.danmakuSwitch == 1 ? window.ede.danmaku.show() : window.ede.danmaku.hide();
-            if (window.ede.ob) {
-                window.ede.ob.disconnect();
+            window.ddd.danmakuSwitch == 1 ? window.ddd.danmaku.show() : window.ddd.danmaku.hide();
+            if (window.ddd.ob) {
+                window.ddd.ob.disconnect();
             }
-            window.ede.ob = new ResizeObserver(() => {
-                if (window.ede.danmaku) {
+            window.ddd.ob = new ResizeObserver(() => {
+                if (window.ddd.danmaku) {
                     console.log('Resizing');
-                    window.ede.danmaku.resize();
+                    window.ddd.danmaku.resize();
                 }
             });
-            window.ede.ob.observe(_container);
+            window.ddd.ob.observe(_container);
         }
 
         function reloadDanmaku(type = 'check') {
-            if (window.ede.loading) {
+            if (window.ddd.loading) {
                 console.log('正在重新加载');
                 return;
             }
-            window.ede.loading = true;
+            window.ddd.loading = true;
             getEpisodeInfo(type != 'search')
                 .then((info) => {
                     return new Promise((resolve, reject) => {
@@ -428,10 +428,10 @@
                                 reject(null);
                             }
                         }
-                        if (type != 'search' && type != 'reload' && window.ede.danmaku && window.ede.episode_info && window.ede.episode_info.episodeId == info.episodeId) {
+                        if (type != 'search' && type != 'reload' && window.ddd.danmaku && window.ddd.episode_info && window.ddd.episode_info.episodeId == info.episodeId) {
                             reject('当前播放视频未变动');
                         } else {
-                            window.ede.episode_info = info;
+                            window.ddd.episode_info = info;
                             resolve(info.episodeId);
                         }
                     });
@@ -450,7 +450,7 @@
                     },
                 )
                 .then(() => {
-                    window.ede.loading = false;
+                    window.ddd.loading = false;
                     if (document.getElementById('danmakuCtr').style.opacity != 1) {
                         document.getElementById('danmakuCtr').style.opacity = 1;
                     }
@@ -548,8 +548,8 @@
         while (!window.require) {
             await new Promise((resolve) => setTimeout(resolve, 200));
         }
-        if (!window.ede) {
-            window.ede = new EDE();
+        if (!window.ddd) {
+            window.ddd = new EDE();
             setInterval(() => {
                 initUI();
             }, check_interval);
