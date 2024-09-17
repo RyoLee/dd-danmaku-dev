@@ -7,9 +7,9 @@ interface SearchEpisodesResponse {
   hasMore: boolean;
   /**
    * 搜索结果（作品信息）列表
-   * @type {Array<SearchEpisodesAnime>}
+   * @type {SearchEpisodesAnime[]}
    */
-  animes?: Array<SearchEpisodesAnime>;
+  animes?: SearchEpisodesAnime[];
   /**
    * 错误代码，0表示没有发生错误，非0表示有错误，详细信息会包含在errorMessage属性中
    * @type {number}
@@ -26,6 +26,18 @@ interface SearchEpisodesResponse {
    */
   errorMessage?: string;
 }
+enum AnimeType {
+  TVSERIES = 'tvseries',
+  TVSPECIAL = 'tvspecial',
+  OVA = 'ova',
+  MOVIE = 'movie',
+  MUSICVIDEO = 'musicvideo',
+  WEB = 'web',
+  OTHER = 'other',
+  JPMOVIE = 'jpmovie',
+  JPDRAMA = 'jpdrama',
+  UNKNOWN = 'unknown',
+}
 interface SearchEpisodesAnime {
   /**
    * 作品编号
@@ -39,9 +51,9 @@ interface SearchEpisodesAnime {
   animeTitle?: string;
   /**
    * 作品类型 = ['tvseries', 'tvspecial', 'ova', 'movie', 'musicvideo', 'web', 'other', 'jpmovie', 'jpdrama', 'unknown']
-   * @type {string}
+   * @type {AnimeType}
    */
-  type: string;
+  type: AnimeType;
   /**
    * 类型描述
    * @type {string}
@@ -49,9 +61,9 @@ interface SearchEpisodesAnime {
   typeDescription?: string;
   /**
    * 此作品的剧集列表
-   * @type {Array<SearchEpisodeDetails>}
+   * @type {SearchEpisodeDetails[]}
    */
-  episodes?: Array<SearchEpisodeDetails>;
+  episodes?: SearchEpisodeDetails[];
 }
 interface SearchEpisodeDetails {
   /**
@@ -68,23 +80,32 @@ interface SearchEpisodeDetails {
 interface GetCommentResponse {
   /**
    * 总数
+   * @type {number}
    */
   count: number;
   /**
    * 评论列表
+   * @type {Comment[]}
    */
-  comments: Array<Comment>;
+  comments: Comment[];
 }
 interface Comment {
   /**
    * 评论ID
+   * @type {number}
    */
   cid: number;
   // "1214.67,1,16777215,-1",
   /**
    * 评论坐标参数: 出现时间, 模式, 颜色, 用户ID
+   * @type {string}
+   * @example "1214.67,1,16777215,-1"
    */
   p: string;
+  /**
+   * 评论内容
+   * @type {string}
+   */
   m: string;
 }
-export { SearchEpisodesResponse, SearchEpisodesAnime, SearchEpisodeDetails, GetCommentResponse, Comment };
+export { SearchEpisodesResponse, SearchEpisodesAnime, SearchEpisodeDetails, GetCommentResponse, Comment, AnimeType };
