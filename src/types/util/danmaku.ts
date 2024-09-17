@@ -31,7 +31,11 @@ interface DanmakuComment {
    * @type {number}
    * @example 233.3
    */
-  time?: number;
+  time: number;
+  /**
+   * 弹幕样式
+   * @type {DanmakuStyle}
+   */
   style: DanmakuStyle;
 }
 interface DanmakuStyle {

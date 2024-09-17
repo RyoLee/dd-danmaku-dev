@@ -2,7 +2,7 @@ import { DanmakuComment, CommentModeMapping, CommentMode } from '@/types/util/da
 import { Comment } from '@/types/api';
 import { config } from '@/util/config';
 
-const formatAdapter = (comments: Comment[]): DanmakuComment[] => {
+const format = (comments: Comment[]): DanmakuComment[] => {
   const dFontSize = parseInt(config.get('fontSize') || '16');
   const dFont = config.get('font') || 'sans-serif';
   return (
@@ -31,5 +31,35 @@ const formatAdapter = (comments: Comment[]): DanmakuComment[] => {
       .filter((comment) => comment.text.trim() !== '')
   );
 };
-
-export { formatAdapter };
+const filter = (comments: DanmakuComment[]): DanmakuComment[] => {
+  const level = parseInt(config.get('filterLevel') || '0');
+  if (level === 0) {
+    return comments;
+  }
+  const limit = 9 - level * 2;
+  let verticalLimit = 6;
+  let resComments: DanmakuComment[][] = [];
+  let verticalComments: DanmakuComment[][] = [];
+  for (let index = 0; index < comments.length; index++) {
+    let element = comments[index];
+    let timeIndex = Math.ceil(element.time);
+    let verticalTimeIndex = Math.ceil(element.time / 3);
+    if (!resComments[timeIndex]) {
+      resComments[timeIndex] = [];
+    }
+    if (!verticalComments[verticalTimeIndex]) {
+      verticalComments[verticalTimeIndex] = [];
+    }
+    // TODO: 屏蔽过滤
+    if (verticalComments[verticalTimeIndex].length < verticalLimit) {
+      verticalComments[verticalTimeIndex].push(element);
+    } else {
+      element.mode = CommentMode.RTL;
+    }
+    if (resComments[timeIndex].length < limit) {
+      resComments[timeIndex].push(element);
+    }
+  }
+  return resComments.flat();
+};
+export { format, filter };
