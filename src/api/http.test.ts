@@ -1,4 +1,4 @@
-import { searchEpisode, getComment } from './http';
+import { searchEpisode, getComment, getBangumiDetail } from './http';
 import fs from 'fs';
 
 const readMockJsonByPath = (path: string) => {
@@ -63,5 +63,28 @@ describe('api/http', () => {
     expect(response.comments.length).toBe(0);
     const responseWithAllParams = await getComment(674700101, 0, false, false);
     expect(responseWithAllParams).toBe(response);
+  });
+});
+
+describe('api/http', () => {
+  test('getBangumiDetail-success', async () => {
+    const successResponse = readMockJsonByPath('api/getBangumiDetail-s.json');
+    mockFetchResponse(successResponse);
+
+    const response = await getBangumiDetail(6747);
+    expect(response.success).toBe(true);
+    expect(response.bangumi).toBeDefined();
+    expect(response.bangumi?.animeId).toBe(6747);
+    expect(response.bangumi?.episodes).toBeDefined();
+    expect(response.bangumi?.episodes?.length).toBe(26);
+  });
+  test('getBangumiDetail-failed', async () => {
+    const failedResponse = readMockJsonByPath('api/getBangumiDetail-f.json');
+    mockFetchResponse(failedResponse);
+    const response = await getBangumiDetail(67471);
+    expect(response.success).toBe(false);
+    expect(response.bangumi).toBe(null);
+    expect(response.errorMessage).toBe('无法找到指定的资源');
+    expect(response.errorCode).toBe(7);
   });
 });

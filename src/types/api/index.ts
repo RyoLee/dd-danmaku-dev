@@ -108,4 +108,61 @@ interface Comment {
    */
   m: string;
 }
-export { SearchEpisodesResponse, SearchEpisodesAnime, SearchEpisodeDetails, GetCommentResponse, Comment, AnimeType };
+interface BangumiDetailsResponse {
+  /**
+   * 番剧详情
+   * @type {BangumiDetails}
+   */
+  bangumi?: BangumiDetails;
+  /**
+   * 错误代码，0表示没有发生错误，非0表示有错误，详细信息会包含在errorMessage属性中
+   * @type {number}
+   */
+  errorCode: number;
+  /**
+   * 接口是否调用成功
+   * @type {boolean}
+   */
+  success: boolean;
+  /**
+   * 当发生错误时，说明错误具体原因
+   * @type {string}
+   */
+  errorMessage?: string;
+}
+interface BangumiDetails {
+  /**
+   * 剧集列表
+   * @type {BangumiEpisode[]}
+   */
+  episodes?: BangumiEpisode[];
+  /**
+   * 作品编号
+   * @type {number}
+   */
+  animeId: number;
+  /**
+   * 作品标题
+   * @type {string}
+   */
+  animeTitle?: string;
+}
+interface BangumiEpisode {
+  /**
+   * 剧集ID（弹幕库编号）
+   * @type {number}
+   */
+  episodeId: number;
+  /**
+   * 剧集完整标题
+   * @type {string}
+   */
+  episodeTitle?: string;
+  /**
+   * 剧集短标题（可以用来排序，非纯数字，可能包含字母）
+   * @type {string}
+   */
+  episodeNumber?: string;
+}
+
+export { SearchEpisodesResponse, SearchEpisodesAnime, SearchEpisodeDetails, GetCommentResponse, Comment, AnimeType, BangumiDetailsResponse };
